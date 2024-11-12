@@ -1,0 +1,7 @@
+Flask
+Flask-SQLAlchemy
+Flask-Bootstrap
+Jinja2
+Flask-RESTful
+Flask-Login
+Flask-WTF
