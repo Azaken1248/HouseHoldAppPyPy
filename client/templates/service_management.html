@@ -1,1 +1,119 @@
-//your code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Management</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .icon {
+            font-size: 50px;
+            color: #007bff;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .btn-primary, .btn-warning, .btn-danger {
+            border-radius: 5px;
+            padding: 10px 20px;
+        }
+        .btn-primary:hover, .btn-warning:hover, .btn-danger:hover {
+            transform: scale(1.05);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+        }
+        .list-group-item {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <!-- Page Title -->
+        <h1 class="mb-4">Service Management</h1>
+
+        <!-- Add New Service Form -->
+        <div class="card shadow-sm mb-5">
+            <div class="card-body">
+                <h3 class="card-title">Add New Service</h3>
+                <form method="POST" action="/add_service">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Service Name:</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description:</label>
+                        <textarea id="description" name="description" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Base Price ($):</label>
+                        <input type="number" id="price" name="price" class="form-control" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="time_required" class="form-label">Estimated Time (hrs):</label>
+                        <input type="number" id="time_required" name="time_required" class="form-control" step="0.5" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Add Service</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Existing Services List -->
+        <h2 class="mb-4">Existing Services</h2>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Demo Card</h5>
+                        <p class="card-text">Description</p>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item"><strong>Price:</strong> $100</li>
+                            <li class="list-group-item"><strong>Estimated Time:</strong> 3 hrs</li>
+                        </ul>
+                        <div class="d-flex justify-content-between">
+                            <!-- Edit and Delete buttons for each service -->
+                            <form method="POST" action="/edit_service/{{ service.id }}" class="me-2">
+                                <button type="submit" class="btn btn-warning btn-sm">Edit</button>
+                            </form>
+                            <form method="POST" action="/delete_service/{{ service.id }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

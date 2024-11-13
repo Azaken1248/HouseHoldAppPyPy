@@ -1,1 +1,33 @@
-//your code
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <div class="card shadow-sm p-4">
+        <h2 class="card-title mb-4">{{ user.name }}'s Profile</h2>
+        
+        <!-- User Information -->
+        <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item"><strong>Role:</strong> {{ user.role }}</li>
+            <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+            <li class="list-group-item"><strong>Joined:</strong> {{ user.date_joined }}</li>
+            <!-- Add more fields as required -->
+        </ul>
+        
+        <!-- Editable Profile Form -->
+        <form method="POST" action="/update_profile">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" id="name" name="name" value="{{ user.name }}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}" class="form-control" required>
+            </div>
+            <!-- Add additional editable fields here, such as phone number, address, etc. -->
+            
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
